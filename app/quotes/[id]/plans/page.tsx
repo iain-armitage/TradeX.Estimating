@@ -1,3 +1,11 @@
-export default function QuotePlans() {
-  return <div className='p-6'>Thumbnail view of plan drawings (click to open takeoff)</div>;
+
+'use client';
+
+export default function PlansPage() {
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-semibold mb-2">Plans Tab</h2>
+      <p>This is a placeholder for the quote plan viewer interface.</p>
+    </div>
+  );
 }
