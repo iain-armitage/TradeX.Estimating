@@ -1,3 +1,3 @@
 export default function Tasks() {
-  return <div>Tasks (Mockup)</div>;
+  return <div className='p-6'>Tasks Management Page</div>;
 }

@@ -1,3 +1,3 @@
 export default function QuoteDetails() {
-  return <div>Quote Details Page</div>;
+  return <div className='p-6'>Quote Overview with Tabs (Overview, Plans, Worksheet)</div>;
 }

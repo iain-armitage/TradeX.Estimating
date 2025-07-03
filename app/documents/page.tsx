@@ -1,3 +1,3 @@
 export default function Documents() {
-  return <div>Documents Page</div>;
+  return <div className='p-6'>Document Control Center</div>;
 }

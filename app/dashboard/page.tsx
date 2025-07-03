@@ -1,3 +1,3 @@
 export default function Dashboard() {
-  return <div>Dashboard (Mockup)</div>;
+  return <div className='p-6'>Dashboard mock: stats, charts, recent activity</div>;
 }

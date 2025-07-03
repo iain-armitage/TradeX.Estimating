@@ -1,3 +1,3 @@
 export default function Contacts() {
-  return <div>Contacts (Mockup)</div>;
+  return <div className='p-6'>Contacts Page (placeholder)</div>;
 }

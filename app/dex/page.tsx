@@ -1,3 +1,3 @@
 export default function Dex() {
-  return <div>Dex AI Assistant (Mockup)</div>;
+  return <div className='p-6'>Dex AI Assistant Chat (Coming Soon)</div>;
 }

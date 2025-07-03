@@ -1,3 +1,3 @@
 export default function QuoteWorksheet() {
-  return <div>Quote Worksheet Page</div>;
+  return <div className='p-6'>Cost summary and breakdown for this quote</div>;
 }

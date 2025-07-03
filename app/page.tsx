@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>Welcome to TradeX Estimating Dashboard</div>;
+  return <div className='p-6 text-xl'>Welcome to TradeX Estimating Dashboard</div>;
 }

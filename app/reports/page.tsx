@@ -1,3 +1,3 @@
 export default function Reports() {
-  return <div>Reports Page</div>;
+  return <div className='p-6'>Reports and Insights</div>;
 }

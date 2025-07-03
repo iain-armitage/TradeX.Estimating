@@ -1,3 +1,3 @@
 # TradeX Estimating
 
-Starter project for TradeX Estimating using Next.js 14 and TailwindCSS.
+Starter app for TradeX Estimating with mock content and route layout.
