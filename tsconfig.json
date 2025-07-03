@@ -1,6 +1,16 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext"
-  }
+    "module": "esnext",
+    "jsx": "preserve",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": ["app"]
 }
