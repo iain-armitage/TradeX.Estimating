@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import type { ReactNode } from 'react';
+import type { ReactNode, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -15,7 +15,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     { name: 'Documents', path: '/documents' },
     { name: 'Reports', path: '/reports' },
     { name: 'Settings', path: '/settings' },
-    { name: 'Dex', path: '/dex' },
   ];
 
   return (
@@ -51,8 +50,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               ))}
             </div>
           </aside>
-          <main className="flex-1 overflow-y-auto p-6">
+          <main className="flex-1 overflow-y-auto p-6 relative">
             {children}
+            <div className="fixed bottom-6 right-6 z-50">
+              <button
+                onClick={() => alert('Dex Assistant coming soon!')}
+                className="rounded-full shadow-lg bg-white hover:bg-gray-100 border border-gray-300 p-3"
+              >
+                <img src="/dex-icon.png" alt="Dex" className="h-8 w-8" />
+              </button>
+            </div>
           </main>
         </div>
       </body>
