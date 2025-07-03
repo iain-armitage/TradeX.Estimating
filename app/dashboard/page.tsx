@@ -1,3 +1,1 @@
-export default function Dashboard() {
-  return <div className='p-6'>Dashboard mock: stats, charts, recent activity</div>;
-}
+export default function DashboardPage() { return <div>Dashboard</div>; }
