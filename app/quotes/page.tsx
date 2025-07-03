@@ -1,14 +1,25 @@
 'use client';
 import Link from 'next/link';
 
+type QuoteStatus = 'Draft' | 'Sent' | 'Accepted' | 'Rejected';
+
+interface Quote {
+  id: number;
+  project: string;
+  client: string;
+  status: QuoteStatus;
+  date: string;
+  value: string;
+}
+
 export default function QuotesPage() {
-  const mockQuotes = [
+  const mockQuotes: Quote[] = [
     { id: 101, project: 'Office Complex A', client: 'ABC Constructions', status: 'Draft', date: '2025-07-01', value: '$120,000' },
     { id: 102, project: 'Shopping Mall B', client: 'XYZ Group', status: 'Sent', date: '2025-06-28', value: '$450,000' },
     { id: 103, project: 'School Upgrade C', client: 'BuildIt', status: 'Accepted', date: '2025-06-20', value: '$310,000' }
   ];
 
-  const statusColors = {
+  const statusColors: Record<QuoteStatus, string> = {
     Draft: 'bg-yellow-100 text-yellow-800',
     Sent: 'bg-blue-100 text-blue-800',
     Accepted: 'bg-green-100 text-green-800',
