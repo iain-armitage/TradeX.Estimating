@@ -1,16 +1,29 @@
-'use client';
-import Link from 'next/link';
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function Home() {
+export default function DashboardPage() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center text-center">
-      <h1 className="text-3xl font-bold mb-4">Welcome to TradeX Estimating</h1>
-      <p className="text-gray-600 mb-6">Your estimating dashboard is ready.</p>
-      <Link href="/quotes">
-        <button className="bg-blue-600 text-white px-6 py-3 rounded shadow hover:bg-blue-700 transition">
-          Go to Quotes
-        </button>
-      </Link>
-    </main>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Dashboard Overview</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card>
+          <CardContent className="p-6">
+            <h2 className="text-xl font-semibold">Total Quotes</h2>
+            <p className="text-2xl mt-2">24</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-6">
+            <h2 className="text-xl font-semibold">Pending Tasks</h2>
+            <p className="text-2xl mt-2">8</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-6">
+            <h2 className="text-xl font-semibold">Contacts</h2>
+            <p className="text-2xl mt-2">12</p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 }
