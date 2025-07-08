@@ -1,18 +1,7 @@
 import { ReactNode } from 'react';
 
-interface SheetProps {
-  children: ReactNode;
-  open: boolean;
-  onOpenChange?: () => void;
-}
-
-export function Sheet({ children, open, onOpenChange }: SheetProps) {
-  // Optional: trigger callback on close (e.g., escape key or overlay click)
-  return open ? (
-    <div className="fixed inset-0 bg-black/30" onClick={onOpenChange}>
-      {children}
-    </div>
-  ) : null;
+export function Sheet({ children, open }: { children: ReactNode; open: boolean }) {
+  return open ? <div className="fixed inset-0 bg-black/30">{children}</div> : null;
 }
 
 export function SheetContent({ children, side = 'right', className = '' }: { children: ReactNode; side?: string; className?: string }) {

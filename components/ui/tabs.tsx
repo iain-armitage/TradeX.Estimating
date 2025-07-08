@@ -1,13 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
-interface TabsProps {
-  children: ReactNode;
-  defaultValue: string;
-  className?: string;
-}
-
-export function Tabs({ children, defaultValue, className = '' }: TabsProps) {
-  return <div className={className}>{children}</div>;
+export function Tabs({ children, defaultValue }: { children: ReactNode; defaultValue: string }) {
+  return <div>{children}</div>;
 }
 
 export function TabsList({ children }: { children: ReactNode }) {
