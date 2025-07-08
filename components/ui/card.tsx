@@ -1,14 +1,15 @@
 
-import React from "react";
+import React from 'react';
+import classNames from 'classnames';
 
-export function Card({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <div className={`rounded-xl border bg-white p-4 shadow ${className}`}>{children}</div>;
+export function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return <div className={classNames('rounded-xl border bg-white p-4 shadow', className)}>{children}</div>;
+}
+
+export function CardHeader({ children }: { children: React.ReactNode }) {
+  return <div className="mb-2 font-semibold">{children}</div>;
 }
 
 export function CardContent({ children }: { children: React.ReactNode }) {
-  return <div className="text-sm text-gray-700">{children}</div>;
-}
-
-export function CardTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-lg font-semibold">{children}</h3>;
+  return <div>{children}</div>;
 }
