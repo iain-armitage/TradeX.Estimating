@@ -1,4 +1,4 @@
-// File: app/contacts/page.tsx
+"use client"; // ✅ Required for using React hooks in app directory
 
 import { useState, useEffect } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
