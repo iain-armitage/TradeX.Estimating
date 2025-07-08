@@ -1,93 +1,105 @@
+// File: app/contacts/page.tsx
 
-'use client';
+import { useState, useEffect } from 'react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
-import React, { useState } from 'react';
-
-const mockContacts = [
-  {
-    id: 1,
-    name: 'Jane Doe',
-    company: 'ABC Plumbing Co.',
-    role: 'Estimator',
-    email: 'jane.doe@example.com',
-    phone: '+61 412 345 678',
-    type: 'Client',
-  },
-  {
-    id: 2,
-    name: 'John Smith',
-    company: 'TopFlow Supplies',
-    role: 'Sales Rep',
-    email: 'john.smith@topflow.com',
-    phone: '+61 423 876 543',
-    type: 'Supplier',
-  },
-  {
-    id: 3,
-    name: 'Emily Chen',
-    company: 'City Consultants',
-    role: 'Engineer',
-    email: 'emily.chen@cityconsult.com.au',
-    phone: '+61 455 223 344',
-    type: 'Consultant',
-  },
-];
+interface Contact {
+  id: string;
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  tags: string[];
+  lastActivity: string;
+}
 
 export default function ContactsPage() {
-  const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState('All');
+  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
 
-  const filteredContacts = mockContacts.filter(contact => {
-    const matchType = filter === 'All' || contact.type === filter;
-    const matchSearch =
-      contact.name.toLowerCase().includes(search.toLowerCase()) ||
-      contact.company.toLowerCase().includes(search.toLowerCase()) ||
-      contact.email.toLowerCase().includes(search.toLowerCase());
-    return matchType && matchSearch;
-  });
+  useEffect(() => {
+    // Placeholder for data fetching from Supabase
+    setContacts([
+      {
+        id: '1',
+        name: 'John Doe',
+        company: 'Builder Co.',
+        email: 'john@builderco.com',
+        phone: '0400123123',
+        tags: ['Client'],
+        lastActivity: '7 July 2025',
+      },
+    ]);
+  }, []);
 
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold">Contacts</h1>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded text-sm">+ Add Contact</button>
+        <Input placeholder="Search contacts..." className="w-1/3" />
+        <Button>Add Contact</Button>
       </div>
 
-      {/* Search & Filter */}
-      <div className="flex items-center space-x-4 mb-6">
-        <input
-          type="text"
-          placeholder="Search contacts..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-1/2 border px-3 py-2 rounded text-sm"
-        />
-        <select
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          className="border px-3 py-2 rounded text-sm"
-        >
-          <option value="All">All Types</option>
-          <option value="Client">Client</option>
-          <option value="Supplier">Supplier</option>
-          <option value="Consultant">Consultant</option>
-        </select>
-      </div>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Company</TableHead>
+            <TableHead>Email</TableHead>
+            <TableHead>Phone</TableHead>
+            <TableHead>Tags</TableHead>
+            <TableHead>Last Activity</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {contacts.map((contact) => (
+            <TableRow key={contact.id} onClick={() => setSelectedContact(contact)} className="cursor-pointer hover:bg-gray-100">
+              <TableCell>{contact.name}</TableCell>
+              <TableCell>{contact.company}</TableCell>
+              <TableCell>{contact.email}</TableCell>
+              <TableCell>{contact.phone}</TableCell>
+              <TableCell>{contact.tags.join(', ')}</TableCell>
+              <TableCell>{contact.lastActivity}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
 
-      {/* Contact Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredContacts.map((contact) => (
-          <div key={contact.id} className="bg-white p-4 rounded shadow-sm border">
-            <h2 className="text-lg font-semibold">{contact.name}</h2>
-            <p className="text-sm text-gray-600">{contact.role} @ {contact.company}</p>
-            <div className="mt-2 text-sm text-gray-700 space-y-1">
-              <p><strong>Email:</strong> <a href={`mailto:${contact.email}`} className="text-blue-600 underline">{contact.email}</a></p>
-              <p><strong>Phone:</strong> {contact.phone}</p>
-              <p><strong>Type:</strong> {contact.type}</p>
-            </div>
+      <Sheet open={!!selectedContact} onOpenChange={() => setSelectedContact(null)}>
+        <SheetContent side="right" className="w-[500px]">
+          <SheetHeader>
+            <SheetTitle>{selectedContact?.name}</SheetTitle>
+          </SheetHeader>
+
+          <div className="mt-4 space-y-2">
+            <div><strong>Company:</strong> {selectedContact?.company}</div>
+            <div><strong>Email:</strong> {selectedContact?.email}</div>
+            <div><strong>Phone:</strong> {selectedContact?.phone}</div>
+            <div><strong>Tags:</strong> {selectedContact?.tags.join(', ')}</div>
+            <div><strong>Last Activity:</strong> {selectedContact?.lastActivity}</div>
           </div>
-        ))}
-      </div>
+
+          <Tabs defaultValue="activity" className="mt-6">
+            <TabsList>
+              <TabsTrigger value="activity">Activity</TabsTrigger>
+              <TabsTrigger value="quotes">Quotes</TabsTrigger>
+              <TabsTrigger value="tasks">Tasks</TabsTrigger>
+            </TabsList>
+            <TabsContent value="activity">
+              <ul className="mt-2 text-sm text-gray-600">
+                <li>📧 Sent quote “Q-04231” – 12 June</li>
+                <li>📝 Note added – 15 June</li>
+                <li>📞 Call logged – 20 June</li>
+              </ul>
+            </TabsContent>
+            <TabsContent value="quotes">No quotes available.</TabsContent>
+            <TabsContent value="tasks">No tasks linked.</TabsContent>
+          </Tabs>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
