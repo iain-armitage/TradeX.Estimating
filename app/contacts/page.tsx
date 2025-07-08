@@ -1,11 +1,11 @@
 "use client"; // ✅ Required for using React hooks in app directory
 
 import { useState, useEffect } from 'react';
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '../../../components/ui/sheet';
-import { Input } from '../../../components/ui/input';
-import { Button } from '../../../components/ui/button';
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../../../components/ui/table';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../../components/ui/tabs';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '../../components/ui/sheet';
+import { Input } from '../../components/ui/input';
+import { Button } from '../../components/ui/button';
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../../components/ui/table';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../components/ui/tabs';
 
 interface Contact {
   id: string;
