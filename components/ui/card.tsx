@@ -1,13 +1,14 @@
-import * as React from "react";
+import { cn } from "@/lib/utils";
+import { HTMLAttributes } from "react";
 
-export function Card({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <div className={`rounded-xl border p-4 shadow ${className}`}>{children}</div>;
+export function Card({ children }: { children: React.ReactNode }) {
+  return <div className="rounded-lg border bg-white shadow">{children}</div>;
 }
 
-export function CardHeader({ children }: { children: React.ReactNode }) {
-  return <div className="mb-2 font-semibold text-lg">{children}</div>;
-}
-
-export function CardContent({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
+export function CardContent({ children, className = "", ...props }: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div className={cn("p-4", className)} {...props}>
+      {children}
+    </div>
+  );
 }
